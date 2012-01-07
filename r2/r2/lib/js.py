@@ -6,6 +6,7 @@ import re
 import json
 
 from r2.lib.translation import iter_langs
+from r2.lib.utils import url_join
 
 if __name__ != "__main__":
     from pylons import g, c
@@ -75,7 +76,7 @@ class FileSource(Source):
         path = [g.static_path, self.name]
         if g.uncompressedJS:
             path.insert(1, "js")
-        return script_tag.format(src=static(os.path.join(*path)))
+        return script_tag.format(src=static(url_join(*path)))
 
     @property
     def dependencies(self):

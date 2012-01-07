@@ -21,7 +21,7 @@
 ################################################################################
 from r2.models import *
 from filters import unsafe, websafe, _force_unicode
-from r2.lib.utils import vote_hash, UrlParser, timesince, is_subdomain
+from r2.lib.utils import vote_hash, UrlParser, timesince, is_subdomain, url_join
 
 from r2.lib.media import s3_direct_url
 
@@ -90,7 +90,7 @@ def static(path, allow_gzip=True):
         actual_filename = g.static_names.get(filename, filename)
     path_components.append(actual_filename + suffix)
 
-    actual_path = os.path.join(*path_components)
+    actual_path = url_join(*path_components)
     return urlparse.urlunsplit((
         scheme,
         domain,
